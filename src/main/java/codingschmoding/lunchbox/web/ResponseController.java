@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import codingschmoding.lunchbox.domain.Response;
+import codingschmoding.lunchbox.domain.View;
 import codingschmoding.lunchbox.repository.ResponseRepository;
 
 @Controller
@@ -22,6 +25,7 @@ public class ResponseController {
 	  
 	  
 	    // RESTful service to get all answers from database
+	  	@JsonView(View.Summary.class)
 	    @GetMapping("/responses")
 	    public @ResponseBody List<Response> responseRest() {
 	        

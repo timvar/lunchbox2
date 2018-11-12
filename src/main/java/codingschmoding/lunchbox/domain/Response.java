@@ -7,17 +7,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Response {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@JsonView(View.Summary.class)
 	private Long responseId;
+	@JsonView(View.Summary.class)
 	private String response;
 	
 	@ManyToOne
     @JoinColumn(name = "id")
+	@JsonView(View.Summary.class)
 	private Question question;
 	
 	public Response(String response) {

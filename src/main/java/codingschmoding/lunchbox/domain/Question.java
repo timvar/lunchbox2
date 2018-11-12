@@ -10,15 +10,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Question {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+	@JsonView(View.Summary.class)
 	private long questionId;
+	
 	private String question;
-
 	private String questionType;
 	
 	@OneToMany
