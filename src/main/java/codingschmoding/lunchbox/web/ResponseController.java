@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import codingschmoding.lunchbox.domain.Response;
 import codingschmoding.lunchbox.repository.ResponseRepository;
 
-@CrossOrigin(origins = "https://codingschmoding.herokuapp.com/")
+@CrossOrigin(origins = "https://codingschmoding.herokuapp.com/", maxAge = 3600)
 @Controller
 public class ResponseController {
 	

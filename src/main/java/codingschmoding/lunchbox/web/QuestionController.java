@@ -13,7 +13,7 @@ import java.util.Optional;
 import codingschmoding.lunchbox.domain.Question;
 import codingschmoding.lunchbox.repository.QuestionRepository;
 
-@CrossOrigin(origins = "https://codingschmoding.herokuapp.com/")
+@CrossOrigin(origins = "https://codingschmoding.herokuapp.com/", maxAge = 3600)
 @Controller
 public class QuestionController {
     
