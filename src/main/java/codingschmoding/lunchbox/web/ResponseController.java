@@ -30,7 +30,7 @@ public class ResponseController {
 	    
 	    
 	    // RESTful service to get an answer by id
-	    @GetMapping("/response/{id}")
+	    @GetMapping("/responses/{id}")
 	    public @ResponseBody Optional<Response> findResponseRest(@PathVariable("id") Long responseId ) {
 	        
 	        return rrepository.findById(responseId);
