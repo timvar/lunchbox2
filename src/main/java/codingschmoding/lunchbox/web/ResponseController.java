@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import codingschmoding.lunchbox.domain.Response;
 import codingschmoding.lunchbox.repository.ResponseRepository;
 
-@CrossOrigin(origins = "https://codingschmoding.herokuapp.com/", maxAge = 3600)
+//@CrossOrigin(origins = "https://codingschmoding.herokuapp.com/", maxAge = 3600)
 @Controller
 public class ResponseController {
 	
 	
-	  @Autowired
+	  	@Autowired
 	    private ResponseRepository rrepository;
 	  
 	  
@@ -30,7 +30,7 @@ public class ResponseController {
 	    }
 	    
 	    
-	    // RESTful service to get a answer by id
+	    // RESTful service to get an answer by id
 	    @GetMapping("/response{id}")
 	    public @ResponseBody Optional<Response> findResponseRest(@PathVariable("id") Long responseId ) {
 	        
