@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -22,6 +24,7 @@ public class ResponseController {
 	
 	  	@Autowired
 	    private ResponseRepository rrepository;
+	  	
 	  
 	  
 	    // RESTful service to get all answers from database
@@ -40,5 +43,19 @@ public class ResponseController {
 	        return rrepository.findById(responseId);
 	        
 	    }
+	   
+	    
+	    // RESTful service to save an answer
+        @PostMapping("/responses")
+        @ResponseBody
+        public Response saveResponse(@RequestBody Response response) {
+        	
+        	rrepository.save(response);
+        	
+            if (response != null) {
+                response.setResponse("toimiiko");
+            }
+            return response;
+        }
 
 }
