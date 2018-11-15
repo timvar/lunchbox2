@@ -23,38 +23,32 @@ public class ResponseController {
 	
 	
 	  	@Autowired
-	    private ResponseRepository rrepository;
+	    private ResponseRepository responseRepository;
 	  	
-	  
-	  
+	  	
 	    // RESTful service to get all answers from database
 	  	@JsonView(View.Summary.class)
 	    @GetMapping("/responses")
 	    public @ResponseBody List<Response> responseRest() {
 	        
-	        return (List<Response>) rrepository.findAll();
+	        return (List<Response>) responseRepository.findAll();
 	    }
-	    
 	    
 	    // RESTful service to get an answer by id
 	    @GetMapping("/responses/{id}")
 	    public @ResponseBody Optional<Response> findResponseRest(@PathVariable("id") Long responseId ) {
 	        
-	        return rrepository.findById(responseId);
+	        return responseRepository.findById(responseId);
 	        
 	    }
 	   
-	    
 	    // RESTful service to save an answer
         @PostMapping("/responses")
         @ResponseBody
         public Response saveResponse(@RequestBody Response response) {
         	
-        	rrepository.save(response);
+        	responseRepository.save(response);
         	
-            if (response != null) {
-                response.setResponse("toimiiko");
-            }
             return response;
         }
 
