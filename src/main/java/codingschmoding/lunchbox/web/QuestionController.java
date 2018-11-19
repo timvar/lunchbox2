@@ -20,6 +20,7 @@ public class QuestionController {
     @Autowired
     private QuestionRepository questionrepository;
 
+    
     // RESTful service to get all questions from database
     @GetMapping("/questions")
     public @ResponseBody List<Question> questionRest() {
