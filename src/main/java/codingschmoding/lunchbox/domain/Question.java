@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,7 +23,16 @@ public class Question {
 	private long questionId;
 	
 	private String question;
-	private String questionType;
+	
+	@ManyToOne
+    @JoinColumn(name = "questionTypeId")
+	@JsonView(View.Summary.class)
+	private QuestionType questionType;
+	
+	@ManyToOne
+    @JoinColumn(name = "surveyId")
+	@JsonView(View.Summary.class)
+	private Survey survey;
 	
 	@OneToMany
 	@JsonIgnore
@@ -31,11 +42,11 @@ public class Question {
 		super();
 	}
 
-	public Question(String question, String questionType) {
+	public Question(String question, QuestionType questionType, Survey survey) {
 		super();
 		this.question = question;
 		this.questionType = questionType;
-		this.questions = questions;
+		this.survey = survey;
 	}
 
 
@@ -64,13 +75,13 @@ public class Question {
 
 
 
-	public String getQuestionType() {
+	public QuestionType getQuestionType() {
 		return questionType;
 	}
 
 
 
-	public void setQuestionType(String questionType) {
+	public void setQuestionType(QuestionType questionType) {
 		this.questionType = questionType;
 	}
 
@@ -84,7 +95,17 @@ public class Question {
 
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
+	}
+
+	public Survey getSurvey() {
+		return survey;
+	}
+
+	public void setSurvey(Survey survey) {
+		this.survey = survey;
 	}	
+	
+	
 	
 	
 	
