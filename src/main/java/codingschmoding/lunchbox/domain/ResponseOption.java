@@ -30,9 +30,8 @@ public class ResponseOption {
 
 
 
-	public ResponseOption(Long responseOptionId, String responseOption, Question question) {
+	public ResponseOption(String responseOption, Question question) {
 		super();
-		this.responseOptionId = responseOptionId;
 		this.responseOption = responseOption;
 		this.question = question;
 	}

@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Bean;
 import codingschmoding.lunchbox.domain.Question;
 import codingschmoding.lunchbox.domain.QuestionType;
 import codingschmoding.lunchbox.domain.Response;
+import codingschmoding.lunchbox.domain.ResponseOption;
 import codingschmoding.lunchbox.domain.Survey;
 import codingschmoding.lunchbox.domain.User;
 import codingschmoding.lunchbox.repository.QuestionRepository;
 import codingschmoding.lunchbox.repository.QuestionTypeRepository;
+import codingschmoding.lunchbox.repository.ResponseOptionRepository;
 import codingschmoding.lunchbox.repository.ResponseRepository;
 import codingschmoding.lunchbox.repository.SurveyRepository;
 import codingschmoding.lunchbox.repository.UserRepository;
@@ -27,10 +29,14 @@ public class LunchboxApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(QuestionRepository questionRepository,
+	public CommandLineRunner demo(
+			QuestionRepository questionRepository,
 			ResponseRepository responseRepository,
 			QuestionTypeRepository questionTypeRepository,
-			SurveyRepository surveyRepository, UserRepository userRepository) {
+			ResponseOptionRepository responseOptionRepository,
+			SurveyRepository surveyRepository, 
+			UserRepository userRepository) {
+		
 		return (args) -> {
 			log.info("save a question");
 			
@@ -65,6 +71,14 @@ public class LunchboxApplication {
 			
 			Response response1 = new Response("vastaus1", question1);
 			responseRepository.save(response1);
+			
+			ResponseOption responseOption1 = new ResponseOption("1-2", question1);
+			ResponseOption responseOption2 = new ResponseOption("3-4", question1);
+			ResponseOption responseOption3 = new ResponseOption("4-5", question1);
+			
+			responseOptionRepository.save(responseOption1);
+			responseOptionRepository.save(responseOption2);
+			responseOptionRepository.save(responseOption3);
 			
 			
 			/*Response response2 = new Response("vastaus2", question1);
