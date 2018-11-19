@@ -34,7 +34,7 @@ public class LunchboxApplication {
 		return (args) -> {
 			log.info("save a question");
 			
-			User user = new User("Netta");
+	User user = new User("Netta");
 			
 			userRepository.save(user);
 			
@@ -43,12 +43,26 @@ public class LunchboxApplication {
 			surveyRepository.save(survey);
 			
 			QuestionType questionTypeText = new QuestionType("text");
+			QuestionType questionTypeRadio = new QuestionType("radio");
+			QuestionType questionTypeCheck = new QuestionType("checkbox");
+			QuestionType questionTypeNumber = new QuestionType("number");
 			//QuestionType questionTypeRadiobutton = new QuestionType("radiobutton");
 			
 			questionTypeRepository.save(questionTypeText);
+			questionTypeRepository.save(questionTypeRadio);
+			questionTypeRepository.save(questionTypeCheck);
+			questionTypeRepository.save(questionTypeNumber);
 
-			Question question1 = new Question("eka?", questionTypeText, survey);
+			Question question1 = new Question("text", questionTypeText, survey);
+			Question question2 = new Question("radio", questionTypeRadio, survey);
+			Question question3 = new Question("checkbox", questionTypeCheck, survey);
+			Question question4 = new Question("number", questionTypeNumber, survey);
+			
 			questionRepository.save(question1);
+			questionRepository.save(question2);
+			questionRepository.save(question3);
+			questionRepository.save(question4);
+			
 			Response response1 = new Response("vastaus1", question1);
 			responseRepository.save(response1);
 			
