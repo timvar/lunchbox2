@@ -10,12 +10,12 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
-public class ResponseOption {
+public class QuestionOption {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long responseOptionId;
-	private String responseOption;
+	private Long questionOptionId;
+	private String questionOption;
 	
 	@ManyToOne
     @JoinColumn(name = "questionId")
@@ -24,40 +24,40 @@ public class ResponseOption {
 	
 	
 
-	public ResponseOption() {
+	public QuestionOption() {
 		super();
 	}
 
 
 
-	public ResponseOption(String responseOption, Question question) {
+	public QuestionOption(String questionOption, Question question) {
 		super();
-		this.responseOption = responseOption;
+		this.questionOption = questionOption;
 		this.question = question;
 	}
 
 
 
-	public Long getResponseOptionId() {
-		return responseOptionId;
+	public Long getQuestionOptionId() {
+		return questionOptionId;
 	}
 
 
 
-	public void setResponseOptionId(Long responseOptionId) {
-		this.responseOptionId = responseOptionId;
+	public void setQuestionOptionId(Long questionOptionId) {
+		this.questionOptionId = questionOptionId;
 	}
 
 
 
-	public String getResponseOption() {
-		return responseOption;
+	public String getQuestionOption() {
+		return questionOption;
 	}
 
 
 
-	public void setResponseOption(String responseOption) {
-		this.responseOption = responseOption;
+	public void setQuestionOption(String questionOption) {
+		this.questionOption = questionOption;
 	}
 
 

@@ -12,20 +12,25 @@ import java.util.List;
 import java.util.Optional;
 
 import codingschmoding.lunchbox.domain.Question;
+import codingschmoding.lunchbox.domain.QuestionOption;
+import codingschmoding.lunchbox.repository.QuestionOptionRepository;
 import codingschmoding.lunchbox.repository.QuestionRepository;
 
 @Controller
 public class QuestionController {
     
     @Autowired
-    private QuestionRepository questionrepository;
+    private QuestionRepository questionRepository;
+    
+    @Autowired
+    private QuestionOptionRepository questionOptionRepository;
 
     
     // RESTful service to get all questions from database
     @GetMapping("/questions")
     public @ResponseBody List<Question> questionRest() {
         
-        return (List<Question>) questionrepository.findAll();
+        return (List<Question>) questionRepository.findAll();
     }
     
     
@@ -33,7 +38,7 @@ public class QuestionController {
     @GetMapping("/questions/{id}")
     public @ResponseBody Optional<Question> findQuestionRest(@PathVariable("id") Long questionId ) {
         
-        return questionrepository.findById(questionId);
+        return questionRepository.findById(questionId);
         
     }
     
@@ -42,9 +47,15 @@ public class QuestionController {
     @ResponseBody
     public Question saveQuestion(@RequestBody Question question) {
     	
-    	questionrepository.save(question);
+    	questionRepository.save(question);
     	
         return question;
+    }
+    
+    @GetMapping("/questionOptions")
+    public @ResponseBody List<QuestionOption> questionOptions() {
+        
+        return (List<QuestionOption>) questionOptionRepository.findAll();
     }
     
 }

@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Bean;
 import codingschmoding.lunchbox.domain.Question;
 import codingschmoding.lunchbox.domain.QuestionType;
 import codingschmoding.lunchbox.domain.Response;
-import codingschmoding.lunchbox.domain.ResponseOption;
+import codingschmoding.lunchbox.domain.QuestionOption;
 import codingschmoding.lunchbox.domain.Survey;
 import codingschmoding.lunchbox.domain.User;
 import codingschmoding.lunchbox.repository.QuestionRepository;
 import codingschmoding.lunchbox.repository.QuestionTypeRepository;
-import codingschmoding.lunchbox.repository.ResponseOptionRepository;
+import codingschmoding.lunchbox.repository.QuestionOptionRepository;
 import codingschmoding.lunchbox.repository.ResponseRepository;
 import codingschmoding.lunchbox.repository.SurveyRepository;
 import codingschmoding.lunchbox.repository.UserRepository;
@@ -33,7 +33,7 @@ public class LunchboxApplication {
 			QuestionRepository questionRepository,
 			ResponseRepository responseRepository,
 			QuestionTypeRepository questionTypeRepository,
-			ResponseOptionRepository responseOptionRepository,
+			QuestionOptionRepository questionOptionRepository,
 			SurveyRepository surveyRepository, 
 			UserRepository userRepository) {
 		
@@ -59,26 +59,24 @@ public class LunchboxApplication {
 			questionTypeRepository.save(questionTypeCheck);
 			questionTypeRepository.save(questionTypeNumber);
 
-			Question question1 = new Question("Kerro, mitä mieltä olet?", questionTypeText, survey);
-			Question question2 = new Question("Mihin seuraavista ikäryhmistä kuulut?", questionTypeRadio, survey);
-			Question question3 = new Question("Valitse alla olevista vaihtoehdoista mieleisesi", questionTypeCheck, survey);
-			Question question4 = new Question("Monestiko viikossa käytät palveluita?", questionTypeNumber, survey);
+			Question question1 = new Question("Kerro, mitä mieltä olet?", questionTypeText, false, survey);
+			Question question3 = new Question("Valitse alla olevista vaihtoehdoista mieleisesi", questionTypeCheck, true, survey);
+			Question question4 = new Question("Monestiko viikossa käytät palveluita?", questionTypeNumber, false, survey);
 			
 			questionRepository.save(question1);
-			questionRepository.save(question2);
 			questionRepository.save(question3);
 			questionRepository.save(question4);
 			
 			Response response1 = new Response("vastaus1", question1);
 			responseRepository.save(response1);
 			
-			ResponseOption responseOption1 = new ResponseOption("1-2", question3);
-			ResponseOption responseOption2 = new ResponseOption("3-4", question3);
-			ResponseOption responseOption3 = new ResponseOption("5-6", question3);
+			QuestionOption questionOption1 = new QuestionOption("1-2", question3);
+			QuestionOption questionOption2 = new QuestionOption("3-4", question3);
+			QuestionOption questionOption3 = new QuestionOption("5-6", question3);
 			
-			responseOptionRepository.save(responseOption1);
-			responseOptionRepository.save(responseOption2);
-			responseOptionRepository.save(responseOption3);
+			questionOptionRepository.save(questionOption1);
+			questionOptionRepository.save(questionOption2);
+			questionOptionRepository.save(questionOption3);
 			
 			
 			/*Response response2 = new Response("vastaus2", question1);

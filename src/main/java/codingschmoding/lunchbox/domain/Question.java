@@ -22,6 +22,7 @@ public class Question {
 	private long questionId;
 	
 	private String question;
+	private boolean questionOptionExist;
 	
 	@ManyToOne
     @JoinColumn(name = "questionTypeId")
@@ -41,10 +42,11 @@ public class Question {
 		super();
 	}
 
-	public Question(String question, QuestionType questionType, Survey survey) {
+	public Question(String question, QuestionType questionType, boolean questionOptionExists, Survey survey) {
 		super();
 		this.question = question;
 		this.questionType = questionType;
+		this.questionOptionExist = questionOptionExists;
 		this.survey = survey;
 	}
 
@@ -85,6 +87,13 @@ public class Question {
 	}
 
 
+	public boolean isQuestionOptionExist() {
+		return questionOptionExist;
+	}
+
+	public void setQuestionOptionExist(boolean questionOptionExist) {
+		this.questionOptionExist = questionOptionExist;
+	}
 
 	public List<Question> getQuestions() {
 		return questions;
