@@ -16,7 +16,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@JsonView(View.Summary.class)
+	@JsonView(View.UserFilter.class)
 	private long userId;
 	
 	private String userName;

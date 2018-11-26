@@ -13,14 +13,14 @@ public class Response {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@JsonView(View.Summary.class)
+	@JsonView(View.ResponseFilter.class)
 	private Long responseId;
-	@JsonView(View.Summary.class)
+	@JsonView(View.ResponseFilter.class)
 	private String response;
 	
 	@ManyToOne
     @JoinColumn(name = "id")
-	@JsonView(View.Summary.class)
+	@JsonView(View.ResponseFilter.class)
 	private Question question;
 	
 	public Response(String response) {

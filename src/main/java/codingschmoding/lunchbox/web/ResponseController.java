@@ -27,7 +27,7 @@ public class ResponseController {
 	  	
 	  	
 	    // RESTful service to get all answers from database
-	  	@JsonView(View.Summary.class)
+	  	@JsonView(View.ResponseSumFilter.class)
 	    @GetMapping("/responses")
 	    public @ResponseBody List<Response> responseRest() {
 	        

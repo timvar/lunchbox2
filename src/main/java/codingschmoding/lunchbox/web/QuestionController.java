@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.List;
 import java.util.Optional;
 
 import codingschmoding.lunchbox.domain.Question;
+import codingschmoding.lunchbox.domain.View;
 import codingschmoding.lunchbox.repository.QuestionRepository;
 import codingschmoding.lunchbox.repository.QuestionTypeRepository;
 import codingschmoding.lunchbox.repository.SurveyRepository;
@@ -32,6 +35,7 @@ public class QuestionController {
     private SurveyRepository surveyrepository;
     
     // RESTful service to get all questions from database
+    @JsonView(View.QuestionSumFilter.class)
     @GetMapping("/questions")
     public @ResponseBody List<Question> questionRest() {
         
