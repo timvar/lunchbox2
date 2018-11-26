@@ -18,20 +18,23 @@ public class Question {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	@JsonView(View.Summary.class)
+	@JsonView(View.QuestionFilter.class)
 	private long questionId;
 	
+	@JsonView(View.QuestionFilter.class)
 	private String question;
+	
+	@JsonView(View.QuestionFilter.class)
 	private boolean questionOptionExist;
 	
 	@ManyToOne
     @JoinColumn(name = "questionTypeId")
-	@JsonView(View.Summary.class)
+	@JsonView(View.QuestionFilter.class)
 	private QuestionType questionType;
 	
 	@ManyToOne
     @JoinColumn(name = "surveyId")
-	@JsonView(View.Summary.class)
+	@JsonView(View.QuestionFilter.class)
 	private Survey survey;
 	
 	@OneToMany

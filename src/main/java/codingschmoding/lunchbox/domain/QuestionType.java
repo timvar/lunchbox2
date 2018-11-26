@@ -16,7 +16,7 @@ public class QuestionType {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@JsonView(View.Summary.class)
+	@JsonView(View.QuestionTypeFilter.class)
 	private long questionTypeId;
 	private String questionType;
 	

@@ -18,7 +18,7 @@ public class Survey {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@JsonView(View.Summary.class)
+	@JsonView(View.SurveyFilter.class)
 	private long surveyId;
 	
 	private String surveyName;
@@ -29,7 +29,7 @@ public class Survey {
 	
 	@ManyToOne
     @JoinColumn(name = "id")
-	@JsonView(View.Summary.class)
+	@JsonView(View.SurveyFilter.class)
 	private User user;
 	
 	public Survey() {
