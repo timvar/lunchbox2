@@ -5,13 +5,13 @@ public class View {
 
 	public interface QuestionTypeFilter {}
 	
-	public static class ResponseFilter {}
+	public interface ResponseFilter {}
 	
 	public interface SurveyFilter {}
 	
-	public static class UserFilter {}
+	public interface UserFilter {}
 	
-	public static class ResponseSumFilter extends ResponseFilter {}
+	public interface ResponseSumFilter extends ResponseFilter {}
 	
 	public interface QuestionSumFilter extends QuestionFilter, SurveyFilter, QuestionTypeFilter {}
 }
