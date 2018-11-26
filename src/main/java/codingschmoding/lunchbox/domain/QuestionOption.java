@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 
 
 @Entity
@@ -15,6 +17,7 @@ public class QuestionOption {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long questionOptionId;
+	
 	private String questionOption;
 	
 	@ManyToOne
