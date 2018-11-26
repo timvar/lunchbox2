@@ -21,7 +21,7 @@ public class Question {
 	@JsonView(View.Summary.class)
 	private long questionId;
 	
-	private String question;
+	private String questionContent;
 	private boolean questionOptionExist;
 	
 	@ManyToOne
@@ -42,11 +42,18 @@ public class Question {
 		super();
 	}
 
-	public Question(String question, QuestionType questionType, boolean questionOptionExists, Survey survey) {
+	public Question(String questionContent, QuestionType questionType, boolean questionOptionExists, Survey survey) {
 		super();
-		this.question = question;
+		this.questionContent = questionContent;
 		this.questionType = questionType;
 		this.questionOptionExist = questionOptionExists;
+		this.survey = survey;
+	}
+
+	public Question(String questionContent, QuestionType questionType, Survey survey) {
+		super();
+		this.questionContent = questionContent;
+		this.questionType = questionType;
 		this.survey = survey;
 	}
 
@@ -64,14 +71,14 @@ public class Question {
 
 
 
-	public String getQuestion() {
-		return question;
+	public String getQuestionContent() {
+		return questionContent;
 	}
 
 
 
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setQuestionContent(String questionContent) {
+		this.questionContent = questionContent;
 	}
 
 

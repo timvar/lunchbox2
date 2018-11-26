@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Luo kysely</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<h1>Create a survey</h1>
+	
+	<div>
+		<form th:object="${question}" th:action="@{save}" action="#" method="post">
+		
+		<label for="questionContent">Syötä kysymys:</label>
+		<input type="text" id="questionContent" th:field="*{questionContent}" class="form-control"/>
+				
+			<div>
+				<label for="questionType">Valitse kysymystyyppi: </label>
+				<select id="questionTypeList" th:field="*{questionType}" class="form-control" >
+				<option th:each="questionType : ${questionTypes}" 
+						th:value="${questionType.questionTypeId}"
+						th:text="${questionType.questionType}"></option>
+				</select>
+			</div>
+			
+			<div>
+				<label for="survey">Valitse kysely: </label>
+				<select id="surveyList" th:field="*{survey}" class="form-control" >
+				<option th:each="survey : ${surveys}" 
+						th:value="${survey.surveyId}"
+						th:text="${survey.surveyName}"></option>
+				</select>
+			</div>
+						
+			<input id="submit" class="btn btn-success" type="submit" value="Save"></input>
+		</form>
+	</div>
+
+</body>
+</html>
