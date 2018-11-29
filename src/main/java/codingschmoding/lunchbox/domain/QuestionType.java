@@ -18,6 +18,8 @@ public class QuestionType {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@JsonView(View.QuestionTypeFilter.class)
 	private long questionTypeId;
+
+	@JsonView(View.QuestionTypeFilter.class)
 	private String questionType;
 	
 	@OneToMany
