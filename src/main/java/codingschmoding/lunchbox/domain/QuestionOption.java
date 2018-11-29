@@ -16,15 +16,15 @@ public class QuestionOption {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@JsonView(View.QuestionOptionFilter.class)
 	private Long questionOptionId;
 	
+	@JsonView(View.QuestionOptionFilter.class)
 	private String questionOption;
 	
 	@ManyToOne
     @JoinColumn(name = "questionId")
-	
 	private Question question;
-	
 	
 
 	public QuestionOption() {

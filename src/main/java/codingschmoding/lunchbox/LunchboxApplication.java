@@ -62,10 +62,12 @@ public class LunchboxApplication {
 			Question question1 = new Question("Kerro, mitä mieltä olet?", questionTypeText, false, survey);
 			Question question3 = new Question("Valitse alla olevista vaihtoehdoista mieleisesi", questionTypeCheck, true, survey);
 			Question question4 = new Question("Monestiko viikossa käytät palveluita?", questionTypeNumber, false, survey);
+			Question question5 = new Question("Oletko tyytyväinen saamaasi palveluun?", questionTypeRadio, true, survey);
 			
 			questionRepository.save(question1);
 			questionRepository.save(question3);
 			questionRepository.save(question4);
+			questionRepository.save(question5);
 			
 			Response response1 = new Response("vastaus1", question1);
 			responseRepository.save(response1);
@@ -77,6 +79,20 @@ public class LunchboxApplication {
 			questionOptionRepository.save(questionOption1);
 			questionOptionRepository.save(questionOption2);
 			questionOptionRepository.save(questionOption3);
+			
+			QuestionOption questionOption4 = new QuestionOption("En ikinä", question5);
+			QuestionOption questionOption5 = new QuestionOption("Joskus harvoin", question5);
+			QuestionOption questionOption6 = new QuestionOption("Joka kuukausi pari kertaa", question5);
+			QuestionOption questionOption7 = new QuestionOption("Viikoittain", question5);
+			QuestionOption questionOption8 = new QuestionOption("Joka päivä!!", question5);
+			
+			questionOptionRepository.save(questionOption4);
+			questionOptionRepository.save(questionOption5);
+			questionOptionRepository.save(questionOption6);
+			questionOptionRepository.save(questionOption7);
+			questionOptionRepository.save(questionOption8);
+			
+			
 			
 			
 			/*Response response2 = new Response("vastaus2", question1);

@@ -21,6 +21,7 @@ public class Survey {
 	@JsonView(View.SurveyFilter.class)
 	private long surveyId;
 	
+	@JsonView(View.SurveyFilter.class)
 	private String surveyName;
 	
 	@OneToMany

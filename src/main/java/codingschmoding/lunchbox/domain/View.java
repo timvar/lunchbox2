@@ -2,8 +2,12 @@ package codingschmoding.lunchbox.domain;
 
 public class View {
 	public interface QuestionFilter {}
+	
+	public interface QuestionSumFilter {} 
 
 	public interface QuestionTypeFilter {}
+	
+	public interface QuestionOptionFilter {}
 	
 	public interface ResponseFilter {}
 	
@@ -13,5 +17,5 @@ public class View {
 	
 	public interface ResponseSumFilter extends ResponseFilter {}
 	
-	public interface QuestionSumFilter extends QuestionFilter, SurveyFilter, QuestionTypeFilter {}
+	public interface QuestionRestFilter extends QuestionSumFilter, QuestionFilter, SurveyFilter, QuestionTypeFilter, QuestionOptionFilter, UserFilter {} 
 }
