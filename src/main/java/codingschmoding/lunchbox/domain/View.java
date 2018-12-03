@@ -15,7 +15,9 @@ public class View {
 	
 	public interface UserFilter {}
 	
-	public interface ResponseSumFilter extends ResponseFilter {}
+	public interface ResponseSumFilter extends ResponseFilter, QuestionFilter {}
 	
 	public interface QuestionRestFilter extends QuestionSumFilter, QuestionFilter, SurveyFilter, QuestionTypeFilter, QuestionOptionFilter, UserFilter {} 
+	
+	public interface QuestionOptionRestFilter extends QuestionOptionFilter, QuestionFilter {}
 }

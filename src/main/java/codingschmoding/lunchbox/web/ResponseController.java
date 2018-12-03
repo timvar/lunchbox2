@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import codingschmoding.lunchbox.domain.QuestionOption;
 import codingschmoding.lunchbox.domain.Response;
 import codingschmoding.lunchbox.domain.View;
 import codingschmoding.lunchbox.repository.ResponseRepository;
@@ -50,6 +51,21 @@ public class ResponseController {
         	responseRepository.save(response);
         	
             return response;
+        }
+        
+     // RESTful service to save multiple responses
+        @PostMapping("/responselist")
+        @ResponseBody
+        public List<Response> saveResponseList(@RequestBody List<Response> responseList) {
+        	
+        	for (Response responseItem : responseList) {
+    			
+        		responseRepository.save(responseItem);
+    				
+    		}
+           	
+        	
+            return responseList;
         }
 
 }

@@ -21,6 +21,7 @@ import codingschmoding.lunchbox.domain.Question;
 import codingschmoding.lunchbox.domain.QuestionOption;
 import codingschmoding.lunchbox.domain.QuestionSum;
 import codingschmoding.lunchbox.domain.QuestionType;
+import codingschmoding.lunchbox.domain.Response;
 import codingschmoding.lunchbox.domain.Survey;
 import codingschmoding.lunchbox.domain.View;
 import codingschmoding.lunchbox.repository.QuestionOptionRepository;
@@ -198,4 +199,32 @@ public class QuestionController {
         return question;
     }
     
+  /*  
+    @GetMapping("/questions-no-options")
+    public @ResponseBody List<Question> questionRest() {
+    	
+        return (List<Question>) questionRepository.findAll();
+    }
+  */  
+ // RESTful service to get all questionoptions
+    @JsonView(View.QuestionOptionRestFilter.class)
+    @GetMapping("/questionoptions")
+    public @ResponseBody Iterable<QuestionOption> questionOptionListRest() {
+    	    
+        return questionOptionRepository.findAll();
+    }
+    
+    // RESTful service to save questionoptions
+    @PostMapping("/questionoptions")
+    @ResponseBody
+    public List<QuestionOption> saveQuestionOptionList(@RequestBody List<QuestionOption> questionOptionList) {
+    	
+    	for (QuestionOption questionOptionItem : questionOptionList) {
+			
+    		questionOptionRepository.save(questionOptionItem);
+				
+		}
+    
+        return questionOptionList;
+    }
 }

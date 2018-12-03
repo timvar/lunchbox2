@@ -21,9 +21,10 @@ public class QuestionOption {
 	
 	@JsonView(View.QuestionOptionFilter.class)
 	private String questionOption;
-	
+		
 	@ManyToOne
     @JoinColumn(name = "questionId")
+	@JsonView(View.QuestionOptionFilter.class)
 	private Question question;
 	
 
