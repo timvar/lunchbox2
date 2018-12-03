@@ -51,22 +51,22 @@ public class LunchboxApplication {
 			QuestionType questionTypeText = new QuestionType("text");
 			QuestionType questionTypeRadio = new QuestionType("radio");
 			QuestionType questionTypeCheck = new QuestionType("checkbox");
-			QuestionType questionTypeNumber = new QuestionType("number");
+			//QuestionType questionTypeNumber = new QuestionType("number"); ** number not needed
 			//QuestionType questionTypeRadiobutton = new QuestionType("radiobutton");
 			
 			questionTypeRepository.save(questionTypeText);
 			questionTypeRepository.save(questionTypeRadio);
 			questionTypeRepository.save(questionTypeCheck);
-			questionTypeRepository.save(questionTypeNumber);
+			//questionTypeRepository.save(questionTypeNumber);
 
 			Question question1 = new Question("Kerro, mitä mieltä olet?", questionTypeText, false, survey);
 			Question question3 = new Question("Valitse alla olevista vaihtoehdoista mieleisesi", questionTypeCheck, true, survey);
-			Question question4 = new Question("Monestiko viikossa käytät palveluita?", questionTypeNumber, false, survey);
+			// Question question4 = new Question("Monestiko viikossa käytät palveluita?", questionTypeNumber, false, survey);
 			Question question5 = new Question("Oletko tyytyväinen saamaasi palveluun?", questionTypeRadio, true, survey);
 			
 			questionRepository.save(question1);
 			questionRepository.save(question3);
-			questionRepository.save(question4);
+			// questionRepository.save(question4); ** number - not needed
 			questionRepository.save(question5);
 			
 			Response response1 = new Response("vastaus1", question1);

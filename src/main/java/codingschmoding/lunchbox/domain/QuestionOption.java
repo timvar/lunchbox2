@@ -24,7 +24,6 @@ public class QuestionOption {
 		
 	@ManyToOne
     @JoinColumn(name = "questionId")
-	@JsonView(View.QuestionOptionFilter.class)
 	private Question question;
 	
 

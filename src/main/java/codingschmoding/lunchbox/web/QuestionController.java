@@ -44,7 +44,10 @@ public class QuestionController {
     @Autowired
     private SurveyRepository surveyRepository;
     
- // RESTful service to get all questions WITH OPTIONS from database
+    /**
+     *  RESTful service to get all questions WITH OPTIONS from database
+     * @return
+     */
     @JsonView(View.QuestionRestFilter.class)
     @GetMapping("/questions")
     public @ResponseBody List<QuestionSum> questionsWithOptionsRest() {
@@ -102,7 +105,11 @@ public class QuestionController {
     }
     
     
-    // RESTful service to get a question WITH OPTIONS by id
+    /**
+     *  RESTful service to get a question WITH OPTIONS by id
+     * @param questionId
+     * @return
+     */
     @JsonView(View.QuestionRestFilter.class)
     @GetMapping("/questions/{id}")
     public @ResponseBody QuestionSum findQuestionWithOptionsRest(@PathVariable("id") Long questionId ) {
@@ -154,7 +161,10 @@ public class QuestionController {
     
     
     
-    // RESTful service to get all questions WITHOUT OPTIONS from database
+    /**
+     *  RESTful service to get all questions WITHOUT OPTIONS from database
+     * @return
+     */
    @GetMapping("/questions-no-options")
     public @ResponseBody List<Question> questionRest() {
     	
@@ -162,7 +172,11 @@ public class QuestionController {
     }
     
     
-    // RESTful service to get a question by id
+    /**
+     *  RESTful service to get a question WITHOUT OPTIONS by id
+     * @param questionId
+     * @return
+     */
     @GetMapping("/questions-no-options/{id}")
     public @ResponseBody Optional<Question> findQuestionRest(@PathVariable("id") Long questionId ) {
         
@@ -170,7 +184,11 @@ public class QuestionController {
         
     }
     
-    
+    /**
+     * Add question -> createSurvey HTML page
+     * @param model
+     * @return
+     */
     @RequestMapping(value="/addquestion")
     public String addQuestion(Model model) {
     		model.addAttribute("question", new Question());
@@ -180,7 +198,11 @@ public class QuestionController {
     		return "createSurvey";
     }
     
-	// Save new question
+	/**
+	 * Save a new question from HTML page
+	 * @param question
+	 * @return
+	 */
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public String saveQuestionHtml(Question question) {
 		//System.out.println("question.content: "+question.getQuestionContent()+ " question.id: "+question.getQuestionId());
@@ -189,7 +211,11 @@ public class QuestionController {
 	}
 
     
-    // RESTful service to save a question
+    /**
+     *  RESTful service to SAVE a question
+     * @param question
+     * @return
+     */
     @PostMapping("/questions")
     @ResponseBody
     public Question saveQuestion(@RequestBody Question question) {
@@ -199,14 +225,11 @@ public class QuestionController {
         return question;
     }
     
-  /*  
-    @GetMapping("/questions-no-options")
-    public @ResponseBody List<Question> questionRest() {
-    	
-        return (List<Question>) questionRepository.findAll();
-    }
-  */  
- // RESTful service to get all questionoptions
+ 
+    /**
+     *  RESTful service to get all questionoptions
+     * @return
+     */
     @JsonView(View.QuestionOptionRestFilter.class)
     @GetMapping("/questionoptions")
     public @ResponseBody Iterable<QuestionOption> questionOptionListRest() {
@@ -214,7 +237,11 @@ public class QuestionController {
         return questionOptionRepository.findAll();
     }
     
-    // RESTful service to save questionoptions
+    /**
+     *  RESTful service to save questionoptions
+     * @param questionOptionList
+     * @return
+     */
     @PostMapping("/questionoptions")
     @ResponseBody
     public List<QuestionOption> saveQuestionOptionList(@RequestBody List<QuestionOption> questionOptionList) {
