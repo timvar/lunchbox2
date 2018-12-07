@@ -1,42 +1,48 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Create Survey</title>
-	<meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, text/html, charset=UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Luo kysely</title>
+    <meta content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <body>
 
-	<h1>Create a survey</h1>
-	
-	<div>
-		<form th:object="${question}" th:action="@{save}" action="#" method="post">
-		
-		<label for="question">Syötä kysymys:</label>
-		<input type="text" id="question" th:field="*{question}" class="form-control"/>
-<!-- 		
-			<div>
-				<label for="questionType">Valitse kysymystyyppi: </label>
-				<select id="questionTypeList" th:field="*{questionType}" class="form-control" >
-				<option th:each="questionType : ${questionTypes}" 
-						th:value="${questionType.questionTypeId}"
-						th:text="${questionType.questionType}"></option>
-				</select>
-			</div>
-			
-			<div>
-				<label for="survey">Valitse kysely: </label>
-				<select id="surveyList" th:field="*{survey}" class="form-control" >
-				<option th:each="survey : ${surveys}" 
-						th:value="${survey.surveyId}"
-						th:text="${survey.surveyName}"></option>
-				</select>
-			</div>
--->					
-			<input id="submit" class="btn btn-success" type="submit" value="Save"></input>
-		</form>
-	</div>
+    <h1>Create a survey</h1>
+    
+    <div>
+        <form id="questionForm" th:object="${question}" th:action="@{save}" action="#" method="post">
+        
+        <label for="questionContent">Syötä kysymys:</label>
+        <input type="text" id="questionContent" th:field="*{questionContent}" class="form-control"/>
+                
+            <div>
+                <label for="questionType">Valitse kysymystyyppi: </label>
+                <select id="questionTypeList" th:field="*{questionType}" class="form-control" onchange="newOption()">
+                <option th:each="questionType : ${questionTypes}"
+                        th:value="${questionType.questionTypeId}"
+                        th:text="${questionType.questionType}"></option>
+                </select>
+            </div>
+            <div id="inputbox"></div>
+            <div id="optiondiv"></div>
+            <div>
+                <label for="survey">Valitse kysely: </label>
+                <select id="surveyList" th:field="*{survey}" class="form-control">
+                <option th:each="survey : ${surveys}"
+                        th:value="${survey.surveyId}"
+                        th:text="${survey.surveyName}"></option>
+                </select>
+            </div>
+            
+            <div th:each="questionOptionItem : ${QuestionOptions}">
+                <label for="questionOptions" >Vastausvaihtoehdot: </label>
+                <input type="text" id="questionOptions" class="form-control">
+                
+            </div>
+            
+                        
+        </form>
 
 </body>
 </html>

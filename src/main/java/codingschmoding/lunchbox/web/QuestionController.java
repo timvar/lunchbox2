@@ -191,11 +191,20 @@ public class QuestionController {
      */
     @RequestMapping(value="/addquestion")
     public String addQuestion(Model model) {
+    		List <QuestionOption> questionOptions = new ArrayList<> ();
+    		for (int i=0; i<6; i++) {
+    			QuestionOption questionOption = new QuestionOption();
+    			questionOptions.add(questionOption);
+    			
+    		}
+    		
     		model.addAttribute("question", new Question());
     		model.addAttribute("questionTypes", questionTypeRepository.findAll());
     		model.addAttribute("surveys", surveyRepository.findAll());
+    		model.addAttribute("questionOptions", questionOptions);
+    		
  
-    		return "createSurvey";
+    		return "create-survey";
     }
     
 	/**
