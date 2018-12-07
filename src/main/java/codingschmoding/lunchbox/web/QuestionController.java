@@ -256,7 +256,7 @@ public class QuestionController {
 				
 			}
 		}
-		return "redirect:/addquestion";
+		return "redirect:/surveyquestions";
 	}
 
     
