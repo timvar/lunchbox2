@@ -34,13 +34,16 @@
                         th:text="${survey.surveyName}"></option>
                 </select>
             </div>
-            
-            <div th:each="questionOptionItem : ${QuestionOptions}">
-                <label for="questionOptions" >Vastausvaihtoehdot: </label>
-                <input type="text" id="questionOptions" class="form-control">
+
+        
+            <div th:each="questionOptionItem, i: ${question.questionOptions}">
+                <label for="questionOptions" >Vastausvaihtoehto: </label>
+                <input type="text" id="questionOptions" class="form-control" th:field="*{questionOptions[__${i.index}__].questionOption}" >
                 
             </div>
             
+            <input class="btn btn-primary" type="submit" value="Save"/>
+          
                         
         </form>
 

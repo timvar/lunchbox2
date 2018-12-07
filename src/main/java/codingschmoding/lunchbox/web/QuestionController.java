@@ -44,6 +44,7 @@ public class QuestionController {
     @Autowired
     private SurveyRepository surveyRepository;
     
+    
     /**
      *  RESTful service to get all questions WITH OPTIONS from database
      * @return
@@ -184,6 +185,7 @@ public class QuestionController {
         
     }
     
+    
     /**
      * Add question -> createSurvey HTML page
      * @param model
@@ -191,17 +193,23 @@ public class QuestionController {
      */
     @RequestMapping(value="/addquestion")
     public String addQuestion(Model model) {
+    
+    		// Max 6 (response) options per question. 
     		List <QuestionOption> questionOptions = new ArrayList<> ();
     		for (int i=0; i<6; i++) {
     			QuestionOption questionOption = new QuestionOption();
     			questionOptions.add(questionOption);
-    			
     		}
     		
-    		model.addAttribute("question", new Question());
+    		// Use Question object to create a new question.
+    		QuestionSum questionSum = new QuestionSum();
+    		
+    		// Store question options in questionSum
+    		questionSum.setQuestionOptions(questionOptions);
+    		
+    		model.addAttribute("question", questionSum);
     		model.addAttribute("questionTypes", questionTypeRepository.findAll());
     		model.addAttribute("surveys", surveyRepository.findAll());
-    		model.addAttribute("questionOptions", questionOptions);
     		
  
     		return "create-survey";
@@ -209,14 +217,42 @@ public class QuestionController {
     
 	/**
 	 * Save a new question from HTML page
-	 * @param question
+	 * Question data stored in QuestionSum -> store in Question and QuestionOption
+	 * @param questionSum
 	 * @return
 	 */
-	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String saveQuestionHtml(Question question) {
-		//System.out.println("question.content: "+question.getQuestionContent()+ " question.id: "+question.getQuestionId());
-		questionRepository.save(question);
-		return "login";
+	@PostMapping("/save")
+	public String saveQuestionHtml(QuestionSum questionSum) {
+		
+		Question question = new Question ();
+		QuestionOption questionOption = new QuestionOption ();
+		
+		// set question content and type (text, radio, checkbox)
+		question.setQuestionContent(questionSum.getQuestionContent());
+		question.setQuestionType(questionSum.getQuestionType());
+		question.setSurvey(questionSum.getSurvey());
+		
+		// questiontype radio or checkbox, questionoptions exist
+		if (questionSum.getQuestionType().getQuestionType().contains("radio") || questionSum.getQuestionType().getQuestionType().contains("checkbox")) {
+			question.setQuestionOptionExist(true);
+		}
+		
+		// save question => get question id (needed for questionoptions)
+		Question savedQuestion = questionRepository.save(question);
+				
+		// save questionoptions one by one
+		for (QuestionOption questionOptionItem : questionSum.getQuestionOptions()) {
+			
+			if (questionOptionItem.getQuestionOption().isEmpty() == false) {
+				
+				// Bind questionOption and question (id, stored as object)
+				questionOptionItem.setQuestion(savedQuestion);
+							
+				questionOptionRepository.save(questionOptionItem);
+				
+			}
+		}
+		return "redirect:/addquestion";
 	}
 
     
