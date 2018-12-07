@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -20,9 +19,6 @@ import java.util.Optional;
 import codingschmoding.lunchbox.domain.Question;
 import codingschmoding.lunchbox.domain.QuestionOption;
 import codingschmoding.lunchbox.domain.QuestionSum;
-import codingschmoding.lunchbox.domain.QuestionType;
-import codingschmoding.lunchbox.domain.Response;
-import codingschmoding.lunchbox.domain.Survey;
 import codingschmoding.lunchbox.domain.View;
 import codingschmoding.lunchbox.repository.QuestionOptionRepository;
 import codingschmoding.lunchbox.repository.QuestionRepository;
@@ -43,6 +39,13 @@ public class QuestionController {
     
     @Autowired
     private SurveyRepository surveyRepository;
+    
+	//List all questions in a survey
+    @RequestMapping(value="/surveyquestions")
+    public String QuestionList(Model model) {	
+     	model.addAttribute("questions", questionRepository.findAll());
+        return "edit-survey";   
+    }
     
     
     /**
@@ -187,7 +190,7 @@ public class QuestionController {
     
     
     /**
-     * Add question -> createSurvey HTML page
+     * Add question -> add-question HTML page
      * @param model
      * @return
      */
@@ -212,8 +215,9 @@ public class QuestionController {
     		model.addAttribute("surveys", surveyRepository.findAll());
     		
  
-    		return "create-survey";
+    		return "add-question";
     }
+
     
 	/**
 	 * Save a new question from HTML page
@@ -237,10 +241,10 @@ public class QuestionController {
 			question.setQuestionOptionExist(true);
 		}
 		
-		// save question => get question id (needed for questionoptions)
+		// save question => get question id (needed for question options)
 		Question savedQuestion = questionRepository.save(question);
 				
-		// save questionoptions one by one
+		// save question options one by one
 		for (QuestionOption questionOptionItem : questionSum.getQuestionOptions()) {
 			
 			if (questionOptionItem.getQuestionOption().isEmpty() == false) {
@@ -272,7 +276,7 @@ public class QuestionController {
     
  
     /**
-     *  RESTful service to get all questionoptions
+     *  RESTful service to get all question options
      * @return
      */
     @JsonView(View.QuestionOptionRestFilter.class)
@@ -283,7 +287,7 @@ public class QuestionController {
     }
     
     /**
-     *  RESTful service to save questionoptions
+     *  RESTful service to save question options
      * @param questionOptionList
      * @return
      */

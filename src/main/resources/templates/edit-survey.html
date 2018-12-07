@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Kysely</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+</head>
+
+<body>
+
+	<div>
+		<h1>Kysely</h1>		
+	</div>
+	<br>	
+    <table>
+		<tr>
+		    <th width="350" height="50">Kysymys</th>
+		    <th width="200" height="50">Tyyppi</th>
+		    <th width="200" height="50"></th>
+		</tr>  
+    	<tr th:each = "question : ${questions}">
+    		<td height="50" th:text="${question.questionContent}"></td>
+    		<td height="50" th:text="${question.questionType.questionType}"></td>
+    		<td height="50">Muokkaa- & Poista-linkki</td>
+    		<!-- <td <a th:href="@{/question/{question}(bID=${boat.bID})}" class="btn btn-danger">Muokkaa</a><a th:href="@{/deletequestion/{questionId}(questionId=${question.questionId})}" class="btn btn-danger">Muokkaa</a></td> -->
+    	</tr>
+     </table>
+     <br>
+	 <a href="/addquestion">Lisää uusi kysymys</a>
+</body>
+</html>

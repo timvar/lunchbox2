@@ -43,9 +43,9 @@
             <div th:each="questionOptionItem, i: ${question.questionOptions}">
                 <label for="questionOptions" >Vastausvaihtoehto: </label>
                 <input type="text" id="questionOptions" class="form-control" th:field="*{questionOptions[__${i.index}__].questionOption}" >
-                
+                <br>
             </div>
-            
+            <br>
             <input class="btn btn-primary" type="submit" value="Save"/>
           
                         
