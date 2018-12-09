@@ -1,27 +1,61 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-        <title>Kirjaudu sisään</title>
-    </head>
-    <body>
-    
-		<div><h1>Tervetuloa!</h1></div>
-    	<div><p>Muokataksesi kyselyä sinun tulee ensin kirjautua sisään.</p></div>
-    	<br>
-        <div th:if="${param.error}">
-            Käyttäjätunnus ja salasana eivät täsmää.
-        </div>
-        <div th:if="${param.logout}">
-            Olet kirjatunut ulos.
-        </div>
+<head>
+   	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <title>Kirjaudu sisään</title>
+<style>
+	.login-page {
+	  width: 360px;
+	  padding: 8% 0 0;
+	  margin: auto;
+	}
+	.form {
+	  position: relative;
+	  z-index: 1;
+	  background: #FFFFFF;
+	  max-width: 360px;
+	  margin: 0 auto 100px;
+	  padding: 45px;
+	  text-align: center;
+	  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	}
+	.form input {
+	  font-family: "Roboto", sans-serif;
+	  outline: 0;
+	  background: #f2f2f2;
+	  width: 100%;
+	  border: 0;
+	  margin: 0 0 15px;
+	  padding: 15px;
+	  box-sizing: border-box;
+	  font-size: 14px;
+	}
+	input[type=submit] {
+	    width: 100%;
+	    background-color: #4CAF50;
+	    color: white;
+	    padding: 14px 20px;
+	    margin: 8px 0;
+	    border: none;
+	    border-radius: 4px;
+	    cursor: pointer;
+	}
+</style>
+</head>
+
+<body>
+<div class="login-page">
+  <div class="form">
         <form th:action="@{/login}" method="post">
+        	<div class="alert alert-danger" th:if="${param.error}">Käyttäjätunnus ja salasana eivät mätsää.</div>	
             <div><label><input type="text" name="username" placeholder="username" required/> </label></div>
             <div><label><input type="password" name="password" placeholder="password" required/> </label></div>
             <br>
             <div><input type="submit" value="Kirjaudu"/></div>
         </form>
-    </body>
+  </div>
+</div>    
+</body>
 </html>

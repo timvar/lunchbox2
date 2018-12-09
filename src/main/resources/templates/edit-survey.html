@@ -3,20 +3,31 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
     <title>Kysely</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<style>
+	.page {
+	  margin: 40px;
+	}
+	.logged {
+	    width: 130px;
+	    background-color: #4CAF50;
+	    color: white;
+	    padding: 10px 10px;
+	    border: none;
+	    border-radius: 4px;
+	    cursor: pointer;
+	}
+</style>
 </head>
+
 <body>
-        <p th:inline="text"><b>Kirjautuneena:</b> [[${#httpServletRequest.remoteUser}]]</p>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Kirjaudu ulos"/>
-        </form>
-    <br><br>
+	<div class="page">
 	<div>
 		<h1>Kysely</h1>		
 	</div>
-	<br>	
+	<br>
+		
     <table>
 		<tr>
 		    <th width="400" height="50">Kysymys</th>
@@ -25,10 +36,17 @@
     	<tr th:each = "question : ${questions}">
     		<td height="50" th:text="${question.questionContent}"></td>
     		<td height="50" th:text="${question.questionType.questionType}"></td>
-    		<!--<a th:href="@{/deletequestion/{questionId}(questionId=${question.questionId})}" class="btn btn-danger">Poista</a></td> -->
+    		
     	</tr>
-     </table>
-     <br>
-	 <a href="/addquestion">Lisää uusi kysymys</a>
+    </table>
+    
+    <br>
+	<a href="/addquestion"><b>Lisää uusi kysymys</b></a>
+	<br><br><br><br><br><br>
+	<p th:inline="text"><b>Kirjautunut:</b> [[${#httpServletRequest.remoteUser}]]</p>
+    <form th:action="@{/logout}" method="post">
+        <input class="logged" type="submit" value="Kirjaudu ulos"/>
+    </form>
+	</div>
 </body>
 </html>

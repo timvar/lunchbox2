@@ -4,57 +4,74 @@
     <title>Lisää kysymys</title>
     <meta content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+	.page {
+	  margin: 40px;
+	}
+	.logged {
+	    width: 130px;
+	    background-color: #4CAF50;
+	    color: white;
+	    padding: 10px 10px;
+	    border: none;
+	    border-radius: 4px;
+	    cursor: pointer;
+	}
+</style>
 </head>
 
 <body>
-    <p th:inline="text"><b>Kirjautuneena:</b> [[${#httpServletRequest.remoteUser}]]</p>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Kirjaudu ulos"/>
-    </form>
-    <br><br>
-
-    <h1>Lisää kysymys</h1>
+	<div class="page">
+	<div>
+    	<h1>Lisää kysymys</h1>
+    </div>
     <br>
     <div>
         <form id="questionForm" th:object="${question}" th:action="@{save}" action="#" method="post">
-        
-             <div>
-                <label for="survey"><b>Valitse kysely:</b></label>
-                <select id="surveyList" th:field="*{survey}" class="form-control">
-                <option th:each="survey : ${surveys}"
-                        th:value="${survey.surveyId}"
-                        th:text="${survey.surveyName}"></option>
-                </select>
-            </div>
-            <br>
-            <label for="questionContent"><b>Syötä kysymys:</b></label>
-        	<input type="text" id="questionContent" th:field="*{questionContent}" class="form-control" required/>
-             <br>   
-            <div>
-                <label for="questionType"><b>Valitse kysymystyyppi:</b></label>
-                <select id="questionTypeList" th:field="*{questionType}" class="form-control" onchange="newOption()">
-                <option th:each="questionType : ${questionTypes}"
-                        th:value="${questionType.questionTypeId}"
-                        th:text="${questionType.questionType}"></option>
-                </select>
-            </div>
-            <br>
-            <p><b>Mikäli kysymykseen kuuluu vastausvaihtoehtoja, voit lisätä ne tähän (1-6 kpl):</b></p>
-            <div id="inputbox"></div>
-            <div id="optiondiv"></div>
-			<br>
-
-        
-            <div th:each="questionOptionItem, i: ${question.questionOptions}">
-                <label for="questionOptions" >Vastausvaihtoehto: </label>
-                <input type="text" id="questionOptions" class="form-control" th:field="*{questionOptions[__${i.index}__].questionOption}" >
-                <br>
-            </div>
-            <br>
-            <input class="btn btn-primary" type="submit" value="Save"/>
+          <div>
+             <label for="survey"><b>Valitse kysely:</b></label>
+             <select id="surveyList" th:field="*{survey}" class="form-control">
+             <option th:each="survey : ${surveys}"
+                     th:value="${survey.surveyId}"
+                     th:text="${survey.surveyName}"></option>
+             </select>
+         </div>
+         
+         <br>
+         <label for="questionContent"><b>Syötä kysymys:</b></label>
+     	 <input type="text" id="questionContent" th:field="*{questionContent}" class="form-control" required/>
+         <br>  
           
-                        
-        </form>
-
+         <div>
+             <label for="questionType"><b>Valitse kysymystyyppi:</b></label>
+             <select id="questionTypeList" th:field="*{questionType}" class="form-control" onchange="newOption()">
+             <option th:each="questionType : ${questionTypes}"
+                     th:value="${questionType.questionTypeId}"
+                     th:text="${questionType.questionType}"></option>
+             </select>
+         </div>
+         
+         <br>
+         <p><b>Mikäli kysymykseen kuuluu vastausvaihtoehtoja, voit lisätä ne tähän (1-6 kpl):</b></p>
+         <div id="inputbox"></div>
+         <div id="optiondiv"></div>
+		 <br>
+		 
+         <div th:each="questionOptionItem, i: ${question.questionOptions}">
+             <label for="questionOptions" >Vastausvaihtoehto: </label>
+             <input type="text" id="questionOptions" class="form-control" th:field="*{questionOptions[__${i.index}__].questionOption}" >
+             <br>
+         </div>
+         
+         <br>
+         <input class="btn btn-primary" type="submit" value="Tallenna"/>
+      </form>
+      
+      <br><br><br><br><br><br>
+   	  <p th:inline="text"><b>Kirjautunut:</b> [[${#httpServletRequest.remoteUser}]]</p>
+	  <form th:action="@{/logout}" method="post">
+   		<input class="logged" type="submit" value="Kirjaudu ulos"/>
+	  </form>
+	</div>
 </body>
 </html>

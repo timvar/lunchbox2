@@ -4,10 +4,19 @@
     	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
         <title>Kysely</title>
-    </head>
-    <body>
-        <h1>Tervetuloa!</h1>
-        <br>
-        <p>Pääset <a th:href="@{/edit-survey}">tästä</a> muokkaamaan luomaasi kyselyä.</p>
-    </body>
+<style>
+	.page {
+	  margin: 40px;
+	}
+</style>
+</head>
+
+<body>
+	<div class="page">
+		<h1>Tervetuloa!</h1>
+		<br>
+		<div class="alert alert-warning" th:if="${param.logout}">Kirjauduit ulos järjestelmästä.</div>
+		<p>Pääset <a th:href="@{/edit-survey}">tästä</a> muokkaamaan luomaasi kyselyä.</p>
+	</div>
+</body>
 </html>
