@@ -41,7 +41,7 @@ public class QuestionController {
     private SurveyRepository surveyRepository;
     
 	//List all questions in a survey
-    @RequestMapping(value="/surveyquestions")
+    @RequestMapping(value="/edit-survey")
     public String QuestionList(Model model) {	
      	model.addAttribute("questions", questionRepository.findAll());
         return "edit-survey";   
@@ -256,7 +256,7 @@ public class QuestionController {
 				
 			}
 		}
-		return "redirect:/surveyquestions";
+		return "redirect:/edit-survey";
 	}
 
     

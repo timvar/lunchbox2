@@ -7,6 +7,11 @@
 </head>
 
 <body>
+    <p th:inline="text"><b>Kirjautuneena:</b> [[${#httpServletRequest.remoteUser}]]</p>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Kirjaudu ulos"/>
+    </form>
+    <br><br>
 
     <h1>Lisää kysymys</h1>
     <br>
@@ -23,7 +28,7 @@
             </div>
             <br>
             <label for="questionContent"><b>Syötä kysymys:</b></label>
-        	<input type="text" id="questionContent" th:field="*{questionContent}" class="form-control"/>
+        	<input type="text" id="questionContent" th:field="*{questionContent}" class="form-control" required/>
              <br>   
             <div>
                 <label for="questionType"><b>Valitse kysymystyyppi:</b></label>

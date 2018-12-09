@@ -40,11 +40,10 @@ public class LunchboxApplication {
 		return (args) -> {
 			log.info("save a question");
 			
-	User user = new User("Netta");
-			
-			userRepository.save(user);
-			
-			Survey survey = new Survey("tyytyvaisyyskysely", user);
+			User user1 = new User("netta");
+			userRepository.save(user1);
+
+			Survey survey = new Survey("tyytyvaisyyskysely", user1);
 			
 			surveyRepository.save(survey);
 			
@@ -91,24 +90,6 @@ public class LunchboxApplication {
 			questionOptionRepository.save(questionOption6);
 			questionOptionRepository.save(questionOption7);
 			questionOptionRepository.save(questionOption8);
-			
-			
-			
-			
-			/*Response response2 = new Response("vastaus2", question1);
-			responseRepository.save(response2);
-			Question question2 = new Question("toka?", "text");
-			Question question3 = new Question("kolmas?", "text");
-			Question question4 = new Question("neljäs?", "text");
-			Question question5 = new Question("viides?", "text");*/
-			
-			
-			/*questionRepository.save(question2);
-			questionRepository.save(question3);
-			questionRepository.save(question4);
-			questionRepository.save(question5);*/
-			
-
 		};
 	}
 }
